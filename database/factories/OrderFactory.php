@@ -20,10 +20,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'total_price'=>fake()->randomDigitNotNull(3),
-            'total_quantity'=>fake()->numberBetween(1,200),
-            'user_id' => User::inRandomOrder()->first()->id,
-            'shipping_id'=>ShippingInfo::inRandomOrder()->first()->id,
+            'total_price'=>fake()->randomNumber(3),
+            'total_quantity'=>fake()->numberBetween(1,30),
+            'user_id' =>'1',
+            'shipping_id'=>fake()->numberBetween(1,10),
 
         ];
     }

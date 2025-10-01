@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'mysterBooks']);
+Route::get('/', [HomeController::class,'ShowCategories']);
+
+Route::get('/books/{category_id}', [BookController::class,'index'])->name('books_by_category');
