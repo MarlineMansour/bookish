@@ -1,6 +1,7 @@
 
 @extends('layouts.master')
-@section('tittle'){{'Bookish world'}}@endsection
+@section('tittle','Bookish world')
+
 @section('content')
 
 <div class="container-fluid p-0">

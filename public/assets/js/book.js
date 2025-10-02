@@ -1,4 +1,4 @@
-
+// add to cart button
 let cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
 const x = document.querySelectorAll(".bookBtn");
 x.forEach(element => {
@@ -12,6 +12,7 @@ x.forEach(element => {
             z++;
             element.innerHTML= z;
         });
+
         counts= 1;
 
         let title = this.parentElement.parentElement.querySelector("h4").textContent;
@@ -52,7 +53,7 @@ x.forEach(element => {
                     let y = document.querySelectorAll(".cart-count");
                     y.forEach(element => {
                         let f= element.innerHTML;
-                        //console.log(f);
+                       console.log(f);
                         let z = parseInt(f);
                         z++;
                         element.innerHTML= z;
@@ -344,11 +345,11 @@ $(document).ready(function(){
 });
 function addItems(id , quantity , callback) {
     $.ajax({
-        url: "Books.json",
+        url: "/{category_id}",
         data:{
 
         },
-        method: "",
+        method: " Get",
         success: function (result)  {
             let flag=null;
             console.log(quantity);

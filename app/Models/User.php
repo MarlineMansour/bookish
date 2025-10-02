@@ -25,6 +25,9 @@ class User extends Authenticatable
         'phone',
 
     ];
+    public function UserOrders(){
+        return  $this->hasMany(Order::class,'user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -1,30 +1,9 @@
 @extends('layouts.master')
-@section('tittle'){{'Books'}}@endsection
+@section('tittle','Books')
 
 @section('content')
 
-<div id="cart-show" class="card d-none float-end">
-    <div  class="d-flex justify-content-between align-items-center">
-        <h3 class="my-0">Cart</h3>
-        <button type="button" id="close" class="btn-close" aria-label="Close"></button>
-    </div>
 
-    <div  id="cart-top">
-        <span class="cart-count">0</span>
-        <span>items</span>
-    </div>
-    <div>
-        <div class="d-flex justify-content-between align-items-center">
-            <h6>Total</h6>
-            <span>0.00</span>
-        </div>
-    </div>
-    <a class="btn btn-outline-dark d-grid"  href="checkout.php" role="button">
-        proceed to checkout
-    </a>
-
-
-</div>
 <div id="books" >
     <div class="row m-3 justify-content-center" >
         @foreach($books as $book)
@@ -58,4 +37,9 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script src="{{asset('assets/js/book.js')}}"></script>
+@endsection
+
+
 

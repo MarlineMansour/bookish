@@ -15,8 +15,8 @@
             <li>
                 <p>Usefull Links</p>
             </li>
-            <li><a href="#">Home</a></li>
-            <li><a href="aboutUs.php">About</a></li>
+            <li><a href="{{route('home')}}">Home</a></li>
+            <li><a href="{{route('about')}}">About</a></li>
         </ul>
     </div>
     <div class="col-md-3 text-center">

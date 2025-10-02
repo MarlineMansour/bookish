@@ -20,4 +20,7 @@ class Order extends Model
     public function OrderShippingInfo(){
         return $this->belongsTo(ShippingInfo::class,'shipping_id');
     }
+    public function Details(){
+        return $this->belongsTo(OrderDetails::class,'order_id');
+    }
 }

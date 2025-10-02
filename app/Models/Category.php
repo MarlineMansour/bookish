@@ -13,5 +13,7 @@ class Category extends Model
         'image',
         'code',
     ];
-
+    public function BookCategory(){
+        return  $this->hasMany(Book::class,'category_id');
+    }
 }

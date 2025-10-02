@@ -8,10 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll align-items-start" style="margin-right:22.5%; --bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="aboutUs.php">About</a>
+                    <a class="nav-link" href="{{route('about')}}">About</a>
                 </li>
                 </li>
                 <li class="nav-item dropdown">
@@ -19,10 +19,10 @@
                         Category
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="mysteryBooks.php">Mystery</a></li>
-                        <li><a class="dropdown-item" href="historyBooks.php">History</a></li>
-                        <li><a class="dropdown-item" href="scienceFictionBooks.php">Science Fiction</a></li>
-                        <li><a class="dropdown-item" href="cookingBooks.php">Cooking</a></li>
+                        <li><a class="dropdown-item" href="{{route('books_by_category',1)}}">Mystery</a></li>
+                        <li><a class="dropdown-item" href="{{route('books_by_category',2)}}">History</a></li>
+                        <li><a class="dropdown-item" href="{{route('books_by_category',3)}}">Science Fiction</a></li>
+                        <li><a class="dropdown-item" href="{{route('books_by_category',4)}}">Cooking</a></li>
                     </ul>
                 </li>
 
@@ -38,9 +38,9 @@
     <div class="d-flex align-items-end gap-4">
         <a id="add" class="cart" href="#">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span class="badge total-items-in-cart">0</span>
+            <span class="badge total-items-in-cart cart-count">0</span>
         </a>
-        <a id="login" href="login.php">
+        <a id="login" href="{{route('login_user')}}">
             <i class="fa-regular fa-user"></i>
         </a>
     </div>

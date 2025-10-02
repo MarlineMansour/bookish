@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function ShowCategories(){
+    public function RedirectToHome(){
 //        $user = User::first();
 //      $book = DB::table('books')->first();
 //        $book=Book::first();
@@ -20,6 +20,8 @@ class HomeController extends Controller
         return view('home',compact('categories'));
 
     }
+
+
 
 }
 //user::create([

@@ -4,7 +4,7 @@
 @include('includes.header')
 <body>
     @include('includes.navbar')
-
+    @include('includes.cart')
     @yield('content')
 </body>
 

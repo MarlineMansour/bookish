@@ -18,4 +18,9 @@ class BookController extends Controller
 
         return view('book.view', compact('books'));
     }
+public function GetBooksAsJson($category_id){
+    $data = Book::query()->with('category:id,name,code')->where('category_id', $category_id)->get();
+   return  response()->json($data);
+}
+
 }
