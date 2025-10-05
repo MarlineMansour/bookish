@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -18,9 +19,19 @@ class BookController extends Controller
 
         return view('book.view', compact('books'));
     }
-public function GetBooksAsJson($category_id){
-    $data = Book::query()->with('category:id,name,code')->where('category_id', $category_id)->get();
-   return  response()->json($data);
+public function CheckQuantity(Request $request){
+    $book_id = $request->input('book_id');
+    $data = Book::query()->where('id', $book_id)->first();
+
+    $quantity = $request->input('quantity');
+         if($quantity>=$data->quantity){
+             return   response()->json(['flag' => false,'massage'=> 'No more books available']);
+         }
+         else{
+           return  response()->json(['flag' => true]);
+         }
+
+
 }
 
 }

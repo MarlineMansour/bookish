@@ -24,6 +24,6 @@ Route::get('/books/{category_id}', [BookController::class,'index'])->name('books
 Route::get('/register',[AuthenticationController::class,'DirectToRegister'])->name('register_user');
 Route::get('/login',[AuthenticationController::class,'ShowLogin'])->name('login_user');
 Route::get('/checkout/',[CheckoutController::class,'ShowPurchasedProduct'])->name('checkout');
-Route::get('/{category_id}',[BookController::class,'GetBooksAsJson'])->name('check');
+Route::post('/books/check',[BookController::class,'CheckQuantity'])->name('checkQuantity');
 Route::get('/about',[AboutController::class,'DirectToAbout'])->name('about');
 
