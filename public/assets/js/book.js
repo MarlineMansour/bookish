@@ -1,6 +1,6 @@
 // add to cart button
-let cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
-const x = document.querySelectorAll(".bookBtn");
+let cart_items = JSON.parse(sessionStorage.getItem('cart_items')) || [];
+// const x = document.querySelectorAll(".bookBtn");
 // x.forEach(element => {
 //     // element.addEventListener('click', function() {
 //     //     let y = document.querySelectorAll(".cart-count");
@@ -37,7 +37,7 @@ const x = document.querySelectorAll(".bookBtn");
 //         // Save to localStorage
 //         localStorage.setItem('cart_items', JSON.stringify(cart_items));
 //         //console.log( 'new items when add'+ $('.new').html());
-//         let add = cartItem.querySelector(".pluss").addEventListener('click', function (e) {
+//         let add = cartItem.querySelector(".pluss").addEventListener('click', function (e) { //plus in cart item
 //             let c='';
 //             if (e.target.tagName == "I") {
 //                 c = e.target.parentElement.previousElementSibling
@@ -192,75 +192,73 @@ const x = document.querySelectorAll(".bookBtn");
 //
 //     });
 
+// const s = document.querySelectorAll(".minuss");
+// // console.log(a);
+// s.forEach(element => {
+//     element.addEventListener('click', function(e) {
+//
+//         let s='';
+//         if (e.target.tagName == "I") {
+//             s = e.target.parentElement.nextElementSibling
+//         } else s = e.target.nextElementSibling
+//
+//         let m = parseInt(s.innerHTML);
+//         if(m >0) {
+//             s.innerHTML = m - 1;
+//         }
+//
+//         if (s.innerHTML == 0) {
+//             e.target.parentElement.parentElement.classList.add("d-none");
+//             e.target.parentElement.parentElement.previousElementSibling.classList.remove("d-none");
+//         }
+//
+//         let y = document.querySelectorAll(".cart-count");
+//         y.forEach(element => {
+//             let f= element.innerHTML;
+//             let z = parseInt(f);
+//             if(z>0) {
+//                 element.innerHTML = z-1;
+//             }
+//
+//         });
+//         // compare between id of cart-item and all card-data-id then assign the counts to be the same in both
+//         let k=element.parentElement.parentElement.parentElement;
+//         let t =document.querySelectorAll(".new");
+//         // console.log('this is' + t);
+//         t.forEach(element =>{
+//             if( k.id==element.getAttribute("id")){
+//                 let newQuantity  = k.querySelector(".book-counts").innerHTML
+//                 let nQ = element.nextElementSibling.querySelector(".book-item-counts");
+//                 nQ.innerHTML = newQuantity;
+//                 if( nQ.innerHTML==0){
+//                     // console.log(t.parentElement);
+//                     // console.log(element.getAttribute("data-id"));
+//                     element.parentElement.remove();
+//                     removeItemFromLocalStorage(k.getAttribute("data-id"));
+//                 }
+//             }
+//         });
+//         //update counts in localstorage cart-counts
+//         localStorage.setItem('cart-count',$('.cart-count').html());
+//     });
+//
+//
+//
+//
+// });
+// const c= document.getElementById("add").addEventListener('click',function(){
+//     let p = document.getElementById("cart-show").classList.remove("d-none");
+//     document.getElementById("cart-show").classList.add("col-3");
+// });
+// const d=document.getElementById("close").addEventListener('click',function(){
+//     let p = document.getElementById("cart-show").classList.add("d-none");
+// });
 
-
-
-const s = document.querySelectorAll(".minuss");
-// console.log(a);
-s.forEach(element => {
-    element.addEventListener('click', function(e) {
-
-        let s='';
-        if (e.target.tagName == "I") {
-            s = e.target.parentElement.nextElementSibling
-        } else s = e.target.nextElementSibling
-
-        let m = parseInt(s.innerHTML);
-        if(m >0) {
-            s.innerHTML = m - 1;
-        }
-
-        if (s.innerHTML == 0) {
-            e.target.parentElement.parentElement.classList.add("d-none");
-            e.target.parentElement.parentElement.previousElementSibling.classList.remove("d-none");
-        }
-
-        let y = document.querySelectorAll(".cart-count");
-        y.forEach(element => {
-            let f= element.innerHTML;
-            let z = parseInt(f);
-            if(z>0) {
-                element.innerHTML = z-1;
-            }
-
-        });
-        // compare between id of cart-item and all card-data-id then assign the counts to be the same in both
-        let k=element.parentElement.parentElement.parentElement;
-        let t =document.querySelectorAll(".new");
-        // console.log('this is' + t);
-        t.forEach(element =>{
-            if( k.id==element.getAttribute("id")){
-                let newQuantity  = k.querySelector(".book-counts").innerHTML
-                let nQ = element.nextElementSibling.querySelector(".book-item-counts");
-                nQ.innerHTML = newQuantity;
-                if( nQ.innerHTML==0){
-                    // console.log(t.parentElement);
-                    // console.log(element.getAttribute("data-id"));
-                    element.parentElement.remove();
-                    removeItemFromLocalStorage(k.getAttribute("data-id"));
-                }
-            }
-        });
-        //update counts in localstorage cart-counts
-        localStorage.setItem('cart-count',$('.cart-count').html());
-    });
-
-
-
-
-});
-const c= document.getElementById("add").addEventListener('click',function(){
-    let p = document.getElementById("cart-show").classList.remove("d-none");
-    document.getElementById("cart-show").classList.add("col-3");
-});
-const d=document.getElementById("close").addEventListener('click',function(){
-    let p = document.getElementById("cart-show").classList.add("d-none");
-});
-function addElementsToCart( cartItem , unique_id ,book_id, cover , title , description , price , counts)
+function addElementsToCart( cartItem , unique_id , cover , title , description , price , counts)
 {
     cartItem.innerHTML = `
                                      <div class="row g-0">
-                                        <div class="col-md-4 new" data-id=${unique_id}">
+                                        <div class="col-md-4 new" data-id=${unique_id}>
                                         <img src=${cover} class="img-fluid rounded-start" >
                                         </div>
                                            <div class="col-md-8">
@@ -284,7 +282,7 @@ function addElementsToCart( cartItem , unique_id ,book_id, cover , title , descr
     cartItem.classList.add("card","mb-3");
     document.getElementById('cart-top').appendChild(cartItem);
 }
-function removeItemFromLocalStorage(unique_id)
+function removeItemFromSessionStorage(unique_id)
 {
     // console.log("uni",unique_id)
     let updated_cart_items = cart_items.filter(item => {
@@ -293,28 +291,36 @@ function removeItemFromLocalStorage(unique_id)
         }
 
     });
-
     cart_items=updated_cart_items;
     // console.log("updated_cart_items",updated_cart_items)
-    localStorage.setItem("cart_items", JSON.stringify(updated_cart_items));
+    sessionStorage.setItem("cart_items", JSON.stringify(updated_cart_items));
 }
 
 $(document).ready(function(){
+    $('#add').click(function(){
+        $('#cart-show').removeClass('d-none');
+        $('#cart-show').addClass('col-3');
+    });
+
+    $('#close').click(function(){
+        $('#cart-show').addClass("d-none");
+    });
     var cart_count ;
-    if(!localStorage.getItem('cart-count'))
+    if(!sessionStorage.getItem('cart-count'))
     {
-        localStorage.setItem('cart-count',0);
+        sessionStorage.setItem('cart-count',0);
     }
-    cart_count = localStorage.getItem('cart-count');
+    cart_count = sessionStorage.getItem('cart-count');
     $('.cart-count').html(cart_count);
+
     // $('.pluss').click(function (){
     // localStorage.setItem('cart-count',$('.cart-count').html());
     //   // 'cart-count' = $('.cart-count').html();
     // });
     // cart-count increses when we click add to cart
-    $('.bookBtn').click(function () {
-        localStorage.setItem('cart-count',$('.cart-count').html())
-    });
+    // $('.bookBtn').click(function () {
+    //     sessionStorage.setItem('cart-count',$('.cart-count').html())
+    // });
     // $('.minuss').click(function () {
     //     localStorage.setItem('cart-count',$('.cart-count').html())
     // });
@@ -327,6 +333,7 @@ $(document).ready(function(){
         //     $(".bookBtn").add
         // }
         //in jquery we use each instead of forEach amd must function not arrow function when we use $(this)
+
         $('.card-bg-color').each(function() {
             // console.log(element.id);
             if(element.id == $(this).attr("data-id")){
@@ -339,6 +346,7 @@ $(document).ready(function(){
 
 
     });
+
  $(".bookBtn").click( function(){
      $(this).addClass("d-none")
      $(this).next().removeClass('d-none');
@@ -349,10 +357,97 @@ $(document).ready(function(){
      // console.log(z)
     $(".cart-count").html( z+1);
 
+    //set variables by values of each element data to append item in cart
+     let title = $(this).parent().parent().find("h4").html();
+     let description= $(this).parent().parent().find("p").html();
+     let cover = $(this).parent().parent().find('img').src;
+     const unique= $(this).parent().parent();
+     let price = $(this).parent().parent().find("bdi").html();
+     let unique_id = unique.attr("data-id");
+     let counts=1;
+
+     // using html appendchild
+     const cartItem = document.createElement('div');
+     addElementsToCart( cartItem, unique_id, cover,title,description,price,counts) // function for creating the html structure for the cart item
+     cart_items.push({
+            id: unique_id,
+            title,
+            description,
+            cover,
+            price,
+            counts
+        });
+     sessionStorage.setItem('cart_items', JSON.stringify(cart_items));
+     sessionStorage.setItem('cart-count',$('.cart-count').html());
  });
-// $(".minuss").click(function(){
-//     $(this).
-// });
+
+ $('body').on('click','.minuss', function (){
+
+        let clicked = $(this);
+        let dataElement="";
+        if(clicked.prop('tagName') =='BUTTON'){
+            dataElement = clicked.closest('[data-id]');
+            let book_id= dataElement.attr('data-id');
+            let count_span=clicked.next();
+            // console.log(clicked,count_span);
+            let Quantity = count_span.html();
+            console.log(Quantity);
+            let newQuantity="";
+            if(Quantity>0){
+                newQuantity = parseInt(Quantity) - 1;
+                count_span.html(newQuantity);
+
+            }
+            if(newQuantity==0){
+                clicked.parent().prev().removeClass('d-none');
+                clicked.parent().addClass('d-none');
+                removeItemFromSessionStorage(book_id);
+            }
+
+            if($('.new').attr('data-id')==book_id) {
+                $('body').
+                // console.log($('.new').attr('data-id'));
+                console.log($('.new > .item'));
+
+                // $('.new').attr('data-id').find('.book-item-counts').html(newQuantity);
+
+            }
+
+
+
+
+        }else{
+            dataElement= clicked.parent().parent().parent().prev();
+            let book_id= dataElement.attr('data-id');
+            let count_span=clicked.next();
+            // console.log(clicked,count_span);
+            let Quantity = count_span.html();
+
+            console.log(Quantity);
+            let newQuantity="";
+            if(Quantity>0){
+                newQuantity = parseInt(Quantity) - 1;
+                count_span.html(newQuantity);
+            }
+            if(newQuantity==0){
+              clicked.parent().parent().parent().parent().parent().remove();
+                removeItemFromSessionStorage(book_id);
+            }
+        }
+
+       let y= $(".cart-count").html();
+       let z=parseInt(y);
+       if($(".cart-count").html()>0){
+           $(".cart-count").html(z-1);
+       }
+     sessionStorage.setItem('cart-count',$('.cart-count').html());
+
+
+
+
+
+
+});
 
 });
 

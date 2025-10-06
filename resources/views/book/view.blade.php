@@ -7,7 +7,7 @@
 <div id="books" >
     <div class="row m-3 justify-content-center" >
         @foreach($books as $book)
-        <div class="card card-bg-color col-md-2 m-2  align-items-center text-center" data-id="{{$book->category->code}}{{$book->id}}" id="{{$book->id}}"  >
+        <div class="card card-bg-color col-md-2 m-2  align-items-center text-center" data-id="{{$book->id}}"   >
             <img src="{{$book->image}}" class="card-img-top" width="40vh">
             <div class="card-body">
                 <h4>{{$book->title}}</h4>
@@ -15,16 +15,16 @@
                 <span class="price">
                         <span class="woocommerce-Price-amount amount">
                             <bdi>
+                                {{$book->price}}
                                 <span class="woocommerce-Price-currencySymbol">EGP</span>
-                             {{$book->price}}
                             </bdi>
                         </span>
                     </span>
                 <button class=" my-2 bookBtn">Add to cart</button>
                 <div class="item-counts d-none">
-                    <a class="minuss" >
+                    <button class="minuss border-0 bg-white" >
                         <i class="fa-solid fa-minus"></i>
-                    </a>
+                    </button>
                     <span class="book-counts item">0</span>
                     <button class="pluss border-0 bg-white"  >
                         <i class="fa-solid fa-plus">
@@ -40,14 +40,29 @@
 @section('script')
     <script src="{{asset('assets/js/book.js')}}"></script>
     <script>
-        $('body').on('.pluss','click', function (){
-            console.log($(this));
-            let Data_id = $(this).parent("div").parent("div").parent("div").attr('data_id');
-            let Book_id =Data_id.charAt(1)
-            // console.log($(this),Book_id);
-            let count_span=$(this).parent().find('.item');
+        $('body').on('click','.pluss', function (){
+             console.log($(this));
+            let clicked = $(this);
+
+            // let dataElement = clicked.closest('[data-id]');
+
+             let  dataElement="";
+             if(clicked.prop('tagName') =='BUTTON'){
+                 dataElement = clicked.closest('[data-id]');
+                 // console.log(clicked.prop('tagName'));
+             }else{
+                 // console.log(clicked.prop('tagName'));
+                 dataElement= clicked.parent().parent().parent().prev();
+             }
+
+            let Book_id = dataElement.attr('data-id');
+            // console.log(dataElement);
+            console.log(Book_id);
+            // // console.log(clicked,Book_id);
+            let count_span=clicked.prev();
+            // console.log(clicked,count_span);
             let Quantity = count_span.html();
-            // console.log(Quantity);
+            console.log(Quantity);
             let newQuantity = parseInt(Quantity) + 1;
 
             $.ajax({
@@ -65,8 +80,13 @@
                     if(response.flag){
                         console.log(newQuantity);
                         count_span.html(newQuantity);
+                        let y= $(".cart-count").html();
+                        let z=parseInt(y);
+                        $(".cart-count").html( z+1);
+                        sessionStorage.setItem('cart-count',$('.cart-count').html());
+
                     }else{
-                        alert(response.message);
+                        alert('No more books available');
                     }
 
                 }

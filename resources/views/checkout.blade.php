@@ -27,7 +27,7 @@
                                     </div>
 
                                 </div>
-
+{{--                                 @foreach($cart_items as $cart_item)--}}
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+{{--                                @endforeach--}}
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
@@ -112,7 +112,6 @@
                             </div>
 
                             <div class="col-lg-5">
-
                                 <div class="card rounded-3">
                                     <div class="card-body" style="background-color: rgb(247, 238, 238);">
                                         <div class="d-flex justify-content-between align-items-center mb-4">

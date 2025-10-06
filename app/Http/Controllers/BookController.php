@@ -20,12 +20,12 @@ class BookController extends Controller
         return view('book.view', compact('books'));
     }
 public function CheckQuantity(Request $request){
+//        dd($request);
     $book_id = $request->input('book_id');
     $data = Book::query()->where('id', $book_id)->first();
-
     $quantity = $request->input('quantity');
          if($quantity>=$data->quantity){
-             return   response()->json(['flag' => false,'massage'=> 'No more books available']);
+             return   response()->json(['flag' => false]);
          }
          else{
            return  response()->json(['flag' => true]);
