@@ -52,3 +52,14 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <script>
+        var cart_count ;
+        if(!sessionStorage.getItem('cart-count'))
+        {
+            sessionStorage.setItem('cart-count',0);
+        }
+        cart_count = sessionStorage.getItem('cart-count');
+        $('.cart-count').html(cart_count);
+    </script>
+@endsection

@@ -15,4 +15,5 @@ class CheckoutController extends Controller
    public function ShowPurchasedProduct(){
       return view('checkout') ;
    }
+
 }

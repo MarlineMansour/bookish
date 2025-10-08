@@ -12,8 +12,10 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body p-4">
-
+                        <form class="mt-4" action="{{route('order')}}" method="post">
+                            @csrf
                         <div class="row">
+
 
                             <div class="col-lg-7">
                                 <h5 class="mb-3"><a href="{{route('home')}}" class="text-body"><i
@@ -28,86 +30,13 @@
 
                                 </div>
 {{--                                 @foreach($cart_items as $cart_item)--}}
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div>
-                                                    <img
-                                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                                                        class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                </div>
-                                                <div class="ms-3">
-                                                    <h5>Samsung galaxy Note 10 </h5>
-                                                    <p class="small mb-0">256GB, Navy Blue</p>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div style="width: 50px;">
-                                                    <h5 class="fw-normal mb-0">2</h5>
-                                                </div>
-                                                <div style="width: 80px;">
-                                                    <h5 class="mb-0">$900</h5>
-                                                </div>
-                                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div id="shopping_items">
+
 {{--                                @endforeach--}}
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div>
-                                                    <img
-                                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                                                        class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                </div>
-                                                <div class="ms-3">
-                                                    <h5>Canon EOS M50</h5>
-                                                    <p class="small mb-0">Onyx Black</p>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div style="width: 50px;">
-                                                    <h5 class="fw-normal mb-0">1</h5>
-                                                </div>
-                                                <div style="width: 80px;">
-                                                    <h5 class="mb-0">$1199</h5>
-                                                </div>
-                                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <div class="card mb-3 mb-lg-0">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div>
-                                                    <img
-                                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                                                        class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                </div>
-                                                <div class="ms-3">
-                                                    <h5>MacBook Pro</h5>
-                                                    <p class="small mb-0">1TB, Graphite</p>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div style="width: 50px;">
-                                                    <h5 class="fw-normal mb-0">1</h5>
-                                                </div>
-                                                <div style="width: 80px;">
-                                                    <h5 class="mb-0">$1799</h5>
-                                                </div>
-                                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+
 
                             </div>
 
@@ -120,67 +49,84 @@
                                                  class="img-fluid " style="width: 50px;" alt="Avatar">
                                         </div>
 
-                                        <form class="mt-4">
                                             <div data-mdb-input-init class="form-outline form-white mb-4">
                                                 <label class="form-label" for="address">Address</label>
-                                                <input type="text" id="address" class="form-control form-control-lg" siez="17"
-                                                />
+                                                <input type="text" id="address" class="form-control form-control-lg" siez="17" required
+                                             name="address"   />
                                             </div>
 
                                             <div class="row mb-4">
                                                 <div class="col-md-6">
                                                     <div data-mdb-input-init class="form-outline form-white">
                                                         <label class="form-label" for="city">City</label>
-                                                        <input type="text" id="city" class="form-control form-control-lg"
-                                                               size="7" id="exp" minlength="7" maxlength="7" />
+                                                        <input type="text" id="city" class="form-control form-control-lg" required
+                                                            name="city"    />
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div data-mdb-input-init class="form-outline form-white">
                                                         <label class="form-label" for="zone">Zone</label>
-                                                        <input type="text" id="zone" class="form-control form-control-lg"
-                                                               size="1" minlength="3" maxlength="3" />
+                                                        <input type="text" id="zone" class="form-control form-control-lg" required
+                                                               size="1" minlength="3" maxlength="3" name="zone"/>
 
                                                     </div>
                                                 </div>
                                             </div>
+{{--                                        <select name="city" id="">--}}
+{{--                                            <option value="1">Cairo</option>--}}
+{{--                                            <option value="2">x</option>--}}
+{{--                                            <option value="3">y</option>--}}
+{{--                                        </select>--}}
+
                                             <div data-mdb-input-init class="form-outline form-white mb-4">
                                                 <label class="form-label" for="phone">Phone</label>
                                                 <input type="text" id="phone" class="form-control form-control-lg" placeholder="ex:01234567892"
-                                                />
+                                                       required name="phone"/>
                                             </div>
                                             <p>Choose your payment method</p>
 
                                             <label for="cash">
-                                                <input type="radio" id="cash" name="payment">Cash
+                                                <input type="radio" id="cash" name="payment_method" value="0">Cash
                                             </label><br>
 
                                             <label for="Credit">
-                                                <input type="radio" id="Credit" name="payment" >Credit
+                                                <input type="radio" id="Credit" name="payment_method" value="1">Credit
                                             </label>
                                             <br>
                                             <div class="d-none">
                                                 <div data-mdb-input-init class="form-outline form-white mb-4">
                                                     <label class="form-label" for="cardNumber">Card Number</label>
-                                                    <input type="text" id="cardNumber" class="form-control form-control-lg"
-                                                           placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                                                    <input name="cardNumber" type="text" id="cardNumber" class="form-control form-control-lg"
+                                                           placeholder="1234 5678 9012 3457" minlength="19" maxlength="19"/>
 
                                                 </div>
+                                                <div class="row mb-4">
+                                                    <div class="col-md-6">
+                                                        <div data-mdb-input-init class="form-outline form-white">
+                                                            <label class="form-label" for="secret">Secret Number</label>
+                                                            <input name="secret" type="text" id="secret" class="form-control form-control-lg"
+                                                                   size="3" minlength="3" maxlength="3" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div data-mdb-input-init class="form-outline form-white">
+                                                            <label class="form-label" for="exp">Expiration date</label>
+                                                            <input name="exp" type="date" id="exp" class="form-control form-control-lg"
+                                                                   size="1" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </form>
-
                                         <hr class="my-4">
-
                                         <div class="d-flex justify-content-between mb-4">
                                             <p class="mb-2">Total</p>
                                             <p class="mb-2">$4818.00</p>
                                         </div>
-
-                                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-block btn-lg"  style="background-color: #0b8f96; color: white;">
-                                            <div class="d-flex justify-content-between">
-                                                <span>Place Order  <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                            </div>
+                                        <button  type="submit"  class="btn btn-block btn-lg"  style="background-color: #0b8f96; color:white; ">
+                                            place order
                                         </button>
 
                                     </div>
@@ -189,7 +135,7 @@
                             </div>
 
                         </div>
-
+                        </form>
                     </div>
                 </div>
             </div>
@@ -197,5 +143,6 @@
     </div>
 </section>
 @endsection
-
-
+@section('script')
+    <script src="{{asset('assets/js/checkout.js')}}"></script>
+@endsection

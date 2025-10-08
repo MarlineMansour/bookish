@@ -47,22 +47,23 @@
             // let dataElement = clicked.closest('[data-id]');
 
              let  dataElement="";
+            let Book_id ="";
+            let otherElement="";
              if(clicked.prop('tagName') =='BUTTON'){
                  dataElement = clicked.closest('[data-id]');
+                 Book_id = dataElement.attr('data-id');
+                 otherElement = $('[data-id='+Book_id+']').not(dataElement).parent().find('.item');
+
                  // console.log(clicked.prop('tagName'));
              }else{
                  // console.log(clicked.prop('tagName'));
                  dataElement= clicked.parent().parent().parent().prev();
+                 Book_id = dataElement.attr('data-id');
+                 otherElement = $('[data-id='+Book_id+']').not(dataElement).find('.item');
              }
 
-            let Book_id = dataElement.attr('data-id');
-            // console.log(dataElement);
-            console.log(Book_id);
-            // // console.log(clicked,Book_id);
             let count_span=clicked.prev();
-            // console.log(clicked,count_span);
             let Quantity = count_span.html();
-            console.log(Quantity);
             let newQuantity = parseInt(Quantity) + 1;
 
             $.ajax({
@@ -80,11 +81,12 @@
                     if(response.flag){
                         console.log(newQuantity);
                         count_span.html(newQuantity);
+                        otherElement.html(newQuantity);
                         let y= $(".cart-count").html();
                         let z=parseInt(y);
                         $(".cart-count").html( z+1);
                         sessionStorage.setItem('cart-count',$('.cart-count').html());
-
+                        updateCountsInSessionStorage(Book_id,newQuantity);
                     }else{
                         alert('No more books available');
                     }

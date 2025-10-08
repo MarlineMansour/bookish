@@ -40,7 +40,7 @@
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge total-items-in-cart cart-count">0</span>
         </a>
-        <a id="login" href="{{route('login_user')}}">
+        <a id="login" href="{{route('ShowLogin')}}">
             <i class="fa-regular fa-user"></i>
         </a>
     </div>

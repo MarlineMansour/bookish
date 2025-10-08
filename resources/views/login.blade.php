@@ -16,27 +16,28 @@
 
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                    <form style="width: 23rem;">
+                    <form action="{{route('login_User')}}" method="post" style="width: 23rem;">
+                        @csrf
 
                         <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
 
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="email">Email address</label>
-                            <input type="email" id="email" class="form-control form-control-lg" />
+                            <input type="email" id="email" class="form-control form-control-lg" name="email"/>
 
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="pass">Password</label>
-                            <input type="password" id="pass" class="form-control form-control-lg"/>
+                            <input type="password" id="pass" class="form-control form-control-lg" name="password"/>
 
                         </div>
 
                         <div class="pt-1 mb-4">
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg " style="color:black; background-color: #78e0e3;" type="button">Login</button>
+                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg " style="color:black; background-color: #78e0e3;" type="submit">Login</button>
                         </div>
 
-                        <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#">Forgot password?</a></p>
+{{--                        <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#">Forgot password?</a></p>--}}
                         <p>Don't have an account? <a href="{{route('register_user')}}" class="link-info" style="color:#0b8f96;"> Register here</a></p>
 
                     </form>

@@ -295,7 +295,17 @@ function removeItemFromSessionStorage(unique_id)
     // console.log("updated_cart_items",updated_cart_items)
     sessionStorage.setItem("cart_items", JSON.stringify(updated_cart_items));
 }
+function updateCountsInSessionStorage(unique_id,counts){
+    let updated_item_counts = cart_items.filter(item => {
+        if (item.id == unique_id){
+            console.log('before:',item.id, item.counts);
+            item.counts= counts;
+            console.log('after:',item.id, item.counts);
+        }
+    });
+    sessionStorage.setItem("cart_items", JSON.stringify(cart_items));
 
+}
 $(document).ready(function(){
     $('#add').click(function(){
         $('#cart-show').removeClass('d-none');
@@ -360,12 +370,11 @@ $(document).ready(function(){
     //set variables by values of each element data to append item in cart
      let title = $(this).parent().parent().find("h4").html();
      let description= $(this).parent().parent().find("p").html();
-     let cover = $(this).parent().parent().find('img').src;
+     let cover = $(this).parent().parent().find('img').attr('src');
      const unique= $(this).parent().parent();
      let price = $(this).parent().parent().find("bdi").html();
      let unique_id = unique.attr("data-id");
      let counts=1;
-
      // using html appendchild
      const cartItem = document.createElement('div');
      addElementsToCart( cartItem, unique_id, cover,title,description,price,counts) // function for creating the html structure for the cart item
@@ -385,53 +394,47 @@ $(document).ready(function(){
 
         let clicked = $(this);
         let dataElement="";
+        let otherElement ="";
+        let Book_id="";
+        let count_span="";
+        let Quantity="";
+        let newQuantity="";
         if(clicked.prop('tagName') =='BUTTON'){
             dataElement = clicked.closest('[data-id]');
-            let book_id= dataElement.attr('data-id');
-            let count_span=clicked.next();
-            // console.log(clicked,count_span);
-            let Quantity = count_span.html();
-            console.log(Quantity);
-            let newQuantity="";
+            Book_id= dataElement.attr('data-id');
+            count_span=clicked.next();
+            otherElement = $('[data-id='+Book_id+']').not(dataElement).parent();
+            console.log(otherElement);
+             Quantity = count_span.html();
             if(Quantity>0){
                 newQuantity = parseInt(Quantity) - 1;
                 count_span.html(newQuantity);
-
+                otherElement.find('.item').html(newQuantity);
+                updateCountsInSessionStorage(Book_id,newQuantity);
             }
             if(newQuantity==0){
                 clicked.parent().prev().removeClass('d-none');
                 clicked.parent().addClass('d-none');
-                removeItemFromSessionStorage(book_id);
+                otherElement.remove();
+                removeItemFromSessionStorage(Book_id);
             }
-
-            if($('.new').attr('data-id')==book_id) {
-                $('body').
-                // console.log($('.new').attr('data-id'));
-                console.log($('.new > .item'));
-
-                // $('.new').attr('data-id').find('.book-item-counts').html(newQuantity);
-
-            }
-
-
-
-
         }else{
             dataElement= clicked.parent().parent().parent().prev();
-            let book_id= dataElement.attr('data-id');
-            let count_span=clicked.next();
-            // console.log(clicked,count_span);
-            let Quantity = count_span.html();
-
-            console.log(Quantity);
-            let newQuantity="";
+            Book_id= dataElement.attr('data-id');
+            otherElement = $('[data-id='+Book_id+']').not(dataElement);
+            count_span=clicked.next();
+            Quantity= count_span.html();
             if(Quantity>0){
                 newQuantity = parseInt(Quantity) - 1;
                 count_span.html(newQuantity);
+                otherElement.find('.item').html(newQuantity);
+                updateCountsInSessionStorage(Book_id,newQuantity);
             }
             if(newQuantity==0){
               clicked.parent().parent().parent().parent().parent().remove();
-                removeItemFromSessionStorage(book_id);
+                otherElement.find('.item-counts').addClass('d-none');
+                otherElement.find('.bookBtn').removeClass('d-none');
+                removeItemFromSessionStorage(Book_id);
             }
         }
 
