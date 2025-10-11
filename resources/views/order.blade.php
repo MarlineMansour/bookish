@@ -22,12 +22,12 @@
                                 </div>
                                 <div  class="form-outline mb-4">
                                     <label class="form-label" for="email">Total Items</label>
-                                    <p>{{$total_quantity}}</p>
+                                    <p>{{$order_total_quantity}}</p>
                                 </div>
 
                                 <div  class="form-outline mb-4">
                                     <label class="form-label" for="pass">Total Price</label>
-                                    <p>{{$total_price}}</p>
+                                    <p>{{$order_total_price}}</p>
 
                                 </div>
 
