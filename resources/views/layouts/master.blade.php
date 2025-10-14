@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 @include('includes.header')
 <body>
     @include('includes.navbar')

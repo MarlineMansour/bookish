@@ -20,5 +20,6 @@ class UserSeeder extends Seeder
             'gender' =>'0',
             'phone'=>'01258963476',
         ]);
+
     }
 }

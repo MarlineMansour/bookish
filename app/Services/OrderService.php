@@ -6,7 +6,7 @@ use App\Models\Order;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
 use App\Services\AddressService;
-use App\Services\ShippingInfoService;   
+use App\Services\ShippingInfoService;
 use App\Services\OrderDetailsService;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -25,13 +25,13 @@ class OrderService
         $this->shippingInfoService = $shippingInfoService;
         $this->orderDetailsService = $orderDetailsService;
     }
-   
+
 
     public function createOrder(array $orderData)
     {
-       
+
     try
-    { 
+    {
          DB::beginTransaction();
         $book_array = $orderData['book_id'];
         $count_array = $orderData['book_count'];
@@ -48,6 +48,7 @@ class OrderService
             $book_price = floatval(Book::query()->where('id', $book)->pluck('price')->first());
             $quantity = intVal($count_array[$key]);
             $item_price = $book_price * $quantity;
+
             $order_details[] = [
                 'book_id' => $book,
                 'quantity' => $quantity,
@@ -75,7 +76,7 @@ class OrderService
             'user_id' =>  $orderData['user_id'],
             'shipping_id' => $shipping->id,
         ]);
-        
+
 
         foreach ($order_details as $user_order) {
             $this->orderDetailsService->createOrderDetails([

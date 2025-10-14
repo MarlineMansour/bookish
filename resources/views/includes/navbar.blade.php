@@ -29,6 +29,7 @@
             </ul>
         </div>
     </div>
+
     <div class="searchDiv">
         <form class="d-flex" role="search">
             <input class="form-control me-2"  type="search" placeholder="Search" style="width:20rem;" aria-label="Search"/>
@@ -44,4 +45,11 @@
             <i class="fa-regular fa-user"></i>
         </a>
     </div>
+
+    @role('admin')
+    <div>
+        <a class="btn btn-outline-dark" id="create_category"  href="{{route('ListCategories')}}">Category</a>
+        <a class="btn btn-outline-dark" id="add_book" href="{{route('ListBooks')}}">Book</a>
+    </div>
+    @endrole
 </nav>
