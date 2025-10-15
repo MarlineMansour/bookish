@@ -2,8 +2,8 @@
 <html>
 @include('includes.header')
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
 <style>
     table {
@@ -63,34 +63,34 @@
     </div>
 
     <div class="card-body">
-        <table>
+        <table id="book_table">
             <thead>
             <th>ID</th>
             <th>Book Title</th>
             <th>Quantity</th>
             <th>Price</th>
-            <th>Category ID</th>
+            <th>Category</th>
             <th>Actions</th>
             </thead>
             <tbody>
-            @foreach($books as $book)
-                <tr >
-                    <td>{{$book->id}}</td>
-                    <td>{{$book->title}}</td>
-                    <td>{{$book->quantity}}</td>
-                    <td>{{$book->price}}</td>
-                    <td>{{$book->category_id}}</td>
+{{--            @foreach($books as $book)--}}
+{{--                <tr >--}}
+{{--                    <td>{{$book->id}}</td>--}}
+{{--                    <td>{{$book->title}}</td>--}}
+{{--                    <td>{{$book->quantity}}</td>--}}
+{{--                    <td>{{$book->price}}</td>--}}
+{{--                    <td>{{$book->category->name}}</td>--}}
 
-                    <td>
-                        <button data-bs-toggle="modal" data-bs-target="#Modal2"   data_id="{{$book->id}}" class="update">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="delete" data_id="{{$book->id}}">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            @endforeach
+{{--                    <td>--}}
+{{--                        <button data-bs-toggle="modal" data-bs-target="#Modal2"   data_id="{{$book->id}}" class="update">--}}
+{{--                            <i class="fa-solid fa-pen"></i>--}}
+{{--                        </button>--}}
+{{--                        <button class="delete" data_id="{{$book->id}}">--}}
+{{--                            <i class="fa-solid fa-trash"></i>--}}
+{{--                        </button>--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
+{{--            @endforeach--}}
             </tbody>
         </table>
 
@@ -105,12 +105,15 @@
                 <button type="button" class="btn-close closeModal2" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body" id="update_model_book" >
-             //form for edit
+
             </div>
 
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function(){
         $('#create').on('click',function(){
@@ -128,7 +131,7 @@
             $('#Modal_create').modal('hide');
         });
 
-        $('.update').on('click',function(){
+        $('body').on('click','.update',function(){
             let book_id = $(this).attr('data_id')
             $.ajax({
                 url:"{{route('edit_book')}}",
@@ -145,6 +148,41 @@
 
         $('.closeModal2').on('click',function(){
             $('#Modal_update').modal('hide');
+        });
+
+        $('body').on('click','.delete',function(){
+            let book_id =  $(this).attr('data_id');
+          $.ajax({
+              url:"{{route('delete_book')}}",
+              data:{
+                id:  book_id
+              },
+              success:function (response) {
+               if(response.success == 'yes'){
+                   alert(response.message);
+                   window.location.reload();
+               }else{
+                   alert('this book is already deleted');
+               }
+              }
+
+          });
+        });
+
+        $('#book_table').DataTable({
+
+            processing: true,
+            serverSide: true,
+            ajax:'{{route('books')}}',
+            columns: [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex',orderable:false,searchable:false },
+                { data: 'title', name: 'title' },
+                { data: 'quantity', name: 'quantity' },
+                { data: 'price', name: 'price' },
+                { data: 'category_id', name: 'category_id' },
+                { data: 'actions', name: 'actions' },
+            ]
+
         });
 
     });

@@ -8,21 +8,23 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll align-items-start" style="margin-right:22.5%; --bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('about')}}">About</a>
                 </li>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="nav-link dropdown-toggle drp_btn" data-bs-target=".dropdown-menu"  data-bs-toggle="dropdown" aria-expanded="false">
                         Category
-                    </a>
+                    </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('books_by_category',1)}}">Mystery</a></li>
-                        <li><a class="dropdown-item" href="{{route('books_by_category',2)}}">History</a></li>
-                        <li><a class="dropdown-item" href="{{route('books_by_category',3)}}">Science Fiction</a></li>
-                        <li><a class="dropdown-item" href="{{route('books_by_category',4)}}">Cooking</a></li>
+                        @foreach($categories as $category)
+                        <li><a class="dropdown-item" href="{{route('books_by_category',$category->id)}}">{{$category->name}}</a></li>
+{{--                        <li><a class="dropdown-item" href="{{route('books_by_category',2)}}">History</a></li>--}}
+{{--                        <li><a class="dropdown-item" href="{{route('books_by_category',3)}}">Science Fiction</a></li>--}}
+{{--                        <li><a class="dropdown-item" href="{{route('books_by_category',4)}}">Cooking</a></li>--}}
+                        @endforeach
                     </ul>
                 </li>
 
@@ -53,3 +55,21 @@
     </div>
     @endrole
 </nav>
+<script>
+    $(document).ready(function(){
+        $('.drp_btn').click(function(){
+            $('.dropdown-menu').toggle();
+        });
+
+    });
+</script>
+<style>
+ .nav-link{
+     color: black;
+ }
+    .dropdown-item:hover{
+        background-color: rgb(247, 238, 238);
+        color: #0b8f96;
+    }
+
+</style>

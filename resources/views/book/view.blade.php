@@ -8,7 +8,7 @@
     <div class="row m-3 justify-content-center" >
         @foreach($books as $book)
         <div class="card card-bg-color col-md-2 m-2  align-items-center text-center" data-id="{{$book->id}}"   >
-            <img src="{{$book->image}}" class="card-img-top" width="40vh">
+            <img src="{{asset('assets/pictures/'.$book->image)}}" class="card-img-top" width="40vh">
             <div class="card-body">
                 <h4>{{$book->title}}</h4>
                 <p>{{$book->description}}</p>

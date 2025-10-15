@@ -1,4 +1,4 @@
-<form action="{{route('store_book')}}" method="post" >
+<form action="{{route('store_book')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div data-mdb-input-init class="form-outline mb-4">
         <label class="form-label" for="title">Title</label>
@@ -16,10 +16,21 @@
         <label class="form-label" for="price">Price</label>
         <input type="number" min="50" id="price" class="form-control form-control-lg" required name="price"  />
     </div>
-{{--    <div data-mdb-input-init class="form-outline mb-4">--}}
-{{--        <label class="form-label" for="#fileToUpload">Image</label>--}}
-{{--        <input type="file" name="fileToUpload" id="fileToUpload">--}}
-{{--    </div>--}}
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="category_id">Category</label>
+
+        <select name="category_id">
+            @foreach($categories as $category)
+            <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+
+    </div>
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="#fileToUpload">Image</label>
+        <input type="file" name="fileToUpload" id="fileToUpload" required>
+    </div>
     <div class="d-flex justify-content-end pt-3">
         <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-lg ms-2" style="background-color: #0b8f96; color: white">Add</button>
     </div>

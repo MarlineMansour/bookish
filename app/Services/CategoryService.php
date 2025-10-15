@@ -8,8 +8,9 @@ class CategoryService
 {
     public function ShowCategories()
     {
-        $cat = Category::query()->select(['id','name','code'])->get();
-        return $cat;
+        $categories = Category::paginate(2);
+
+        return $categories;
     }
     public function CreateCategory(array $categorydata)
     {

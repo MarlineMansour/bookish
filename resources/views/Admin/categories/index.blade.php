@@ -86,7 +86,7 @@
             <th>Actions</th>
             </thead>
             <tbody>
-            @foreach($categories as $category)
+            @foreach($data['categories'] as $category)
                 <tr >
                     <td>{{$category->id}}</td>
                     <td>{{$category->name}}</td>
@@ -102,8 +102,12 @@
                 </tr>
             @endforeach
             </tbody>
-        </table>
 
+        </table>
+        <div class="pagination-wrapper">
+{{--            <p>{{ get_class($data['categories']) }}</p>--}}
+            {{ $data['categories']->links('pagination::bootstrap-5') }}
+        </div>
     </div>
 
 </div>

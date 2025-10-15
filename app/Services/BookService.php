@@ -1,53 +1,31 @@
 <?php
 namespace App\Services;
 use App\Models\Book;
-
-
+use function Illuminate\Routing\Controllers\except;
+use Yajra\DataTables\Facades\DataTables;
 
 class BookService
 {
     public function listBooks()
     {
-        $books = Book::query()->select(['id','title','quantity','price','category_id'])->orderBy('category_id')->get();
+        $books = Book::query()->select(['id','title','quantity','price'])->orderBy('category_id')->get();
         return $books;
     }
 
     public function CreateBook(array $bookdata)
     {
-        return  Book::create([
-            'title'=>$bookdata['title'],
-            'description'=>$bookdata['description'],
-            'quantity'=>$bookdata['quantity'],
-            'price'=>$bookdata['price']
 
-        ]);
+        return  Book::create($bookdata);
     }
 
-public function updateBook($id ,array $updateddata){
-        return Book::query()->where('id',$id)->update($updateddata);
-}
+    public function UpdateBook($id ,array $updated_book){
+            return Book::query()->where('id',$id)->update($updated_book);
+    }
 
-
-//    public function deleteCategory($id)
-//    {
-//        $Category=Category::query()->where('id',$id)->with('BookCategory')->first();
-////           dd(count($Category->BookCategory));
-//        if(count($Category->BookCategory)>0){
-//            return [
-//                'success'=>'no',
-//                'message'=>'sorry, can not delete this category ,delete its books first'
-//            ];
-//        }
-//        else{
-//            $Category ->delete();
-//            return [
-//                'success'=>'yes',
-//                'message'=>'deleted successfully'
-//            ];
-////               return alert("deleted successfully");
-//        }
-//
+//    public function DeleteBook($id){
+//        Book::query()->where('id',$id)->delete();
 //    }
+
 
 
 

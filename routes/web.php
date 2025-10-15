@@ -53,5 +53,6 @@ Route::get('/create_book',[BookController::class,'create'])->name('create_book')
 Route::post('/store_book',[BookController::class,'store'])->name('store_book');
 Route::get('/edit_book',[BookController::class,'edit'])->name('edit_book');
 Route::post('/update_book',[BookController::class,'update'])->name('update_book');
-
+Route::get('/delete_book',[BookController::class,'delete'])->name('delete_book');
+Route::get('/fill_book_table',[BookController::class,'getBooks'])->name('books');
 

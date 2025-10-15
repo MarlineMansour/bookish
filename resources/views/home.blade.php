@@ -12,7 +12,7 @@
     @foreach($categories as $category)
     <div class="col-md-3 card border-0 text-center my-2">
         <a href="{{route('books_by_category',$category->id)}}">
-            <img src="assets/pictures/{{$category->image}}" class="rounded-circle" width="100" />
+            <img src="{{asset('assets/pictures/'.$category->image)}}" class="rounded-circle" width="100" />
         </a>
         <div class="card-body">
             <h5>{{$category->name}}</h5>
