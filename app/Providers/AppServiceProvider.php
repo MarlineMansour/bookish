@@ -29,4 +29,6 @@ class AppServiceProvider extends ServiceProvider
              $view->with('categories',$categories);
     });
     }
+
+
 }

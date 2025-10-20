@@ -14,12 +14,10 @@ nav {
 
 }
 .navbar {
-        display:flex;
-        justify-content: space-between;
+
         margin-bottom: 2rem;
         padding: 15px 0px;
-        align-content: center;
-        align-items: center;
+
 }
 #logo{
 
@@ -37,19 +35,18 @@ nav {
 }
 .cart{
     font-size: 20px;
-    color:#0b8f96;
+    color:black;
 }
 .cart:hover{
-    color:#b4dfe2;
+    color:#0b8f96;
 }
 #login{
     font-size: 20px;
-    color:#0b8f96;
-    margin-right:15px
-
+    color: black;
+    margin-right:15px;
 }
 #login:hover{
-    color:#b4dfe2
+    color:#0b8f96
 }
 /* #ul1{
     display: flex;
@@ -72,9 +69,9 @@ nav {
 .nav-link:hover:not(.active){
     color:#0b8f96
 }
-.nav-link.active{
-    color:#0b8f96;
-}
+/*.nav-link.active{*/
+/*    color:#0b8f96;*/
+/*}*/
 ul li a:hover{
   color:#0b8f96;
 }
@@ -145,6 +142,7 @@ ul li a:hover{
 
 footer{
     background-color: rgb(247, 238, 238);
+    text-decoration: none;
 }
 /* .footer-left img{
  border-radius: 50px;
@@ -297,7 +295,7 @@ text-align: center;
     height: 20px;
     border-radius: 50%;
     background:white;
-    color:#0b8f96;
+    color:black;
     font-size: 12px;
     line-height: 10px;
 }

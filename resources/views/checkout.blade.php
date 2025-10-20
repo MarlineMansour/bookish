@@ -35,9 +35,6 @@
 {{--                                @endforeach--}}
                                 </div>
 
-
-
-
                             </div>
 
                             <div class="col-lg-5">
@@ -60,7 +57,7 @@
                                                     <div data-mdb-input-init class="form-outline form-white">
                                                         <label class="form-label" for="city">City</label>
                                                         <input type="text" id="city" class="form-control form-control-lg" required
-                                                            name="city"    />
+                                                            name="city"/>
 
                                                     </div>
                                                 </div>
@@ -120,12 +117,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        <hr class="my-4">
-                                        <div class="d-flex justify-content-between mb-4">
-                                            <p class="mb-2">Total</p>
-                                            <p class="mb-2">$4818.00</p>
-                                        </div>
-                                        <button  type="submit"  class="btn btn-block btn-lg"  style="background-color: #0b8f96; color:white; ">
+                                        <button  type="submit"  class="btn btn-block btn-lg my-2"  style="background-color: #0b8f96; color:white; ">
                                             place order
                                         </button>
 

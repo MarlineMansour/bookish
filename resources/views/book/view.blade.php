@@ -2,17 +2,28 @@
 @section('tittle','Books')
 
 @section('content')
-
+@section('style')
+    <style>
+       .No_available {
+        color: #0b8f96;
+        font-weight: bold;
+        text-align: center;
+        font-size: xx-large;
+        margin: 3rem;
+    }
+    </style>
+@endsection
 
 <div id="books" >
-    <div class="row m-3 justify-content-center" >
-        @foreach($books as $book)
-        <div class="card card-bg-color col-md-2 m-2  align-items-center text-center" data-id="{{$book->id}}"   >
-            <img src="{{asset('assets/pictures/'.$book->image)}}" class="card-img-top" width="40vh">
-            <div class="card-body">
-                <h4>{{$book->title}}</h4>
-                <p>{{$book->description}}</p>
-                <span class="price">
+    @if($books->count()>0)
+        <div class="row m-3 justify-content-center" >
+            @foreach($books as $book)
+                <div class="card card-bg-color col-md-2 m-2  align-items-center text-center" data-id="{{$book->id}}"   >
+                    <img src="{{asset('assets/pictures/'.$book->image)}}" class="card-img-top" width="40vh">
+                    <div class="card-body">
+                        <h4>{{$book->title}}</h4>
+                        <p>{{$book->description}}</p>
+                        <span class="price">
                         <span class="woocommerce-Price-amount amount">
                             <bdi>
                                 {{$book->price}}
@@ -20,21 +31,24 @@
                             </bdi>
                         </span>
                     </span>
-                <button class=" my-2 bookBtn">Add to cart</button>
-                <div class="item-counts d-none">
-                    <button class="minuss border-0 bg-white" >
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                    <span class="book-counts item">0</span>
-                    <button class="pluss border-0 bg-white"  >
-                        <i class="fa-solid fa-plus">
-                        </i>
-                    </button>
+                        <button class=" my-2 bookBtn">Add to cart</button>
+                        <div class="item-counts d-none">
+                            <button class="minuss border-0 bg-white" >
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <span class="book-counts item">0</span>
+                            <button class="pluss border-0 bg-white"  >
+                                <i class="fa-solid fa-plus">
+                                </i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
+    @else
+    <p class="No_available">No Books available</p>
+    @endif
 </div>
 @endsection
 @section('script')
@@ -50,6 +64,7 @@
             let Book_id ="";
             let otherElement="";
              if(clicked.prop('tagName') =='BUTTON'){
+                 //card itself
                  dataElement = clicked.closest('[data-id]');
                  Book_id = dataElement.attr('data-id');
                  otherElement = $('[data-id='+Book_id+']').not(dataElement).parent().find('.item');
@@ -77,7 +92,7 @@
 {{--                headers:{token:'{{csrf_token()}}'},--}}
                 method: "POST",
                 success: function ( response )  {
-                    console.log(response);
+                  console.log(response);
                     if(response.flag){
                         console.log(newQuantity);
                         count_span.html(newQuantity);

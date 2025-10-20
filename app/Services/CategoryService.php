@@ -19,6 +19,7 @@ class CategoryService
 
     public function updateCategory($id ,array $updateddata)
     {
+
       $newData=  Category::query()->where('id',$id)->update($updateddata);
 
         return $newData;

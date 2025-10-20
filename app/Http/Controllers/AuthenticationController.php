@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,6 +17,14 @@ class AuthenticationController extends Controller
     }
     public function ShowLogin(){
         return view('login');
+    }
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
      public function index(Request $request){
 
@@ -33,7 +42,8 @@ class AuthenticationController extends Controller
 //           dd('dina');
            return redirect()->route('home');
        } else {
-           return back()->withErrors(['login_error' => 'Invalid credentials'])->withInput();
+           Toastr::error('your credentials are wrong, please check them', 'Error');
+           return redirect()->back();
        }
 
    }

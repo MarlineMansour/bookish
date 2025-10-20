@@ -23,21 +23,21 @@ class OrderController extends Controller
     }
 
     public function index(Request $request)
-    {  
+    {
         $order = $this->orderService->createOrder($request->all());
         $order_id=$order->id;
         $order_total_price=$order->total_price;
         $order_total_quantity=$order->total_quantity;
         return view('order', compact('order_id','order_total_price','order_total_quantity'));
-      
+
     }
-   
+
 
 
 
 
 //     public function index(Request $request)
-//     {  
+//     {
 //         $request['user_id'] = Auth::user()->id;
 // //             dd($request->all());
 //         $book_array = $request['book_id'];

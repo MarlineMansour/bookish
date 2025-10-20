@@ -399,6 +399,7 @@ $(document).ready(function(){
         let count_span="";
         let Quantity="";
         let newQuantity="";
+        let other="";
         if(clicked.prop('tagName') =='BUTTON'){
             dataElement = clicked.closest('[data-id]');
             Book_id= dataElement.attr('data-id');
@@ -419,10 +420,18 @@ $(document).ready(function(){
                 removeItemFromSessionStorage(Book_id);
             }
         }else{
-            dataElement= clicked.parent().parent().parent().prev();
+            if(clicked.prop('tagName') =='I'){
+                other=clicked.parent();
+                // console.log(other);
+            }
+            else{
+                other=clicked;
+                // console.log('this is anchor',other);
+            }
+            dataElement= other.parent().parent().parent().prev();
             Book_id= dataElement.attr('data-id');
             otherElement = $('[data-id='+Book_id+']').not(dataElement);
-            count_span=clicked.next();
+            count_span=other.next();
             Quantity= count_span.html();
             if(Quantity>0){
                 newQuantity = parseInt(Quantity) - 1;
@@ -431,7 +440,8 @@ $(document).ready(function(){
                 updateCountsInSessionStorage(Book_id,newQuantity);
             }
             if(newQuantity==0){
-              clicked.parent().parent().parent().parent().parent().remove();
+              other.parent().parent().parent().parent().parent().remove();
+                console.log(other.parent().parent().parent().parent().parent());
                 otherElement.find('.item-counts').addClass('d-none');
                 otherElement.find('.bookBtn').removeClass('d-none');
                 removeItemFromSessionStorage(Book_id);
@@ -451,7 +461,13 @@ $(document).ready(function(){
 
 
 });
+$('#login').on('click',function () {
+  if($('.login_text').html() ==  'logout'){
+      sessionStorage.removeItem('cart_items');
+      sessionStorage.setItem('cart-count',0);
+  }
 
+});
 });
 
 // function addItems(id , quantity , callback) {

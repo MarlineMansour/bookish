@@ -22,8 +22,6 @@ class HomeController extends Controller
 
     }
 
-
-
 }
 //user::create([
 //    'name'=>'karie',

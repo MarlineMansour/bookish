@@ -20,6 +20,8 @@ class BookController extends Controller
         $this->bookService = $bookService;
 
     }
+
+
     public function index($category_id)
     {
 
@@ -137,4 +139,6 @@ class BookController extends Controller
                 ->make(true);
         }
     }
+
+
 }

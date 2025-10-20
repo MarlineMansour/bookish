@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-expand-lg flex-row" style="background-color: rgb(247, 238, 238);">
+<nav class="navbar navbar-expand-lg flex-row justify-content-between" style="background-color: rgb(247, 238, 238);">
     <div class="links d-flex">
         <div class="logo">
             <img id="logo" src="{{asset('assets/pictures/bookLogo.jpg')}}" width="50px" height="50px" />
@@ -33,19 +33,27 @@
     </div>
 
     <div class="searchDiv">
-        <form class="d-flex" role="search">
-            <input class="form-control me-2"  type="search" placeholder="Search" style="width:20rem;" aria-label="Search"/>
+        <form class="d-flex" role="search" action="{{route('search_results')}}">
+            <input class="form-control me-2"  type="search" placeholder="Search for books" style="width:20rem;" aria-label="Search" name="search_words"/>
             <button class="btn btn-outline-dark" class="search" type="submit">Search</button>
         </form>
     </div>
+
     <div class="d-flex align-items-end gap-4">
         <a id="add" class="cart" href="#">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge total-items-in-cart cart-count">0</span>
         </a>
-        <a id="login" href="{{route('ShowLogin')}}">
+        <a id="login" href="{{Auth::user() ? route('logout') : route('login')}}" >
             <i class="fa-regular fa-user"></i>
+           <span class="login_text">{{Auth::user() ? 'logout' : 'login'}}</span>
+{{--            <span class="logout_text " hidden >Log Out</span>--}}
         </a>
+{{--        <button >--}}
+{{--            <a id="login" href="{{route('ShowLogin')}}">--}}
+{{--                <i class="fa-regular fa-user"></i>--}}
+{{--            </a>--}}
+{{--        <span  class=" hide">Log Out</span></button>--}}
     </div>
 
     @role('admin')
@@ -64,9 +72,13 @@
     });
 </script>
 <style>
+    *{
+        text-decoration: none;
+    }
  .nav-link{
      color: black;
  }
+
     .dropdown-item:hover{
         background-color: rgb(247, 238, 238);
         color: #0b8f96;

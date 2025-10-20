@@ -17,22 +17,23 @@
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label >Order ID</label>
+                                    <label>Order ID</label>
                                     <p>{{$order_id}}</p>
                                 </div>
-                                <div  class="form-outline mb-4">
+                                <div class="form-outline mb-4">
                                     <label class="form-label" for="email">Total Items</label>
                                     <p>{{$order_total_quantity}}</p>
                                 </div>
 
-                                <div  class="form-outline mb-4">
+                                <div class="form-outline mb-4">
                                     <label class="form-label" for="pass">Total Price</label>
                                     <p>{{$order_total_price}}</p>
 
                                 </div>
 
                                 <div class="d-flex justify-content-center pt-3">
-                                    <button  type="submit"  class="btn  btn-lg ms-2" style="background-color: #0b8f96; color: white">OK</button>
+                                    <a href="{{route('home')}}" type="button" id="ok" class="btn btn-lg ms-2 "
+                                       style="background-color: #0b8f96; color: white">OK</a>
                                 </div>
 
                             </div>
@@ -45,4 +46,13 @@
 </section>
 
 @include('includes.script')
+<script>
+    $(document).ready(function () {
+        $('#ok').on('click', function () {
+            sessionStorage.removeItem('cart_items');
+            sessionStorage.setItem('cart-count', 0);
+        });
+    });
+</script>
+
 </body>

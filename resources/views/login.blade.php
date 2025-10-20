@@ -53,6 +53,7 @@
     </div>
 </section>
 
-@include('includes.script')
+{{--@include('includes.script')--}}
+
 </body>
 </html>

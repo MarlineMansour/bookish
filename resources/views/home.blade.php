@@ -7,7 +7,7 @@
 <div class="container-fluid p-0">
     <h2 class="slogan"><i>Unlock the magic of Reading </i></h2>
 </div>
-
+{{--<p>{{Auth::user()->name}}</p>--}}
 <div class="row my-5">
     @foreach($categories as $category)
     <div class="col-md-3 card border-0 text-center my-2">
