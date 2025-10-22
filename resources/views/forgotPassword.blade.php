@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Enter your email to reset your password</h5>
-            <form method="POST" action="#">
+            <form method="POST" action="{{route('verification_code')}}">
                 @csrf
 
                 <div class="form-outline mb-4">
@@ -17,8 +17,6 @@
                 </div>
 
             </form>
-
-
         </div>
         <div>
             <button type="submit" class="btn btn-outline-dark">Send Reset Link</button>

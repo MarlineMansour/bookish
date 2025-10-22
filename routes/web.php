@@ -33,6 +33,7 @@ Route::middleware('guest')->group(function(){
     Route::post('/register-store',[AuthenticationController::class,'register'])->name('register_store');
     Route::post('/login_User',[AuthenticationController::class,'login'])->name('login_User');
     Route::get('/forgot_password',[UserController::class,'ForgotPassword'])->name('forgot_password');
+    Route::post('/verification_code',[UserController::class,'Generatecode'])->name('verification_code');
 });
 
 //Route::get('/checkout',[CheckoutController::class,'ShowPurchasedProduct'])->name('checkout')->middleware('auth');
