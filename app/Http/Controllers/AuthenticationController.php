@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -16,6 +18,7 @@ class AuthenticationController extends Controller
         return view('register');
     }
     public function ShowLogin(){
+//        dd('here');
         return view('login');
     }
     public function logout(Request $request){
@@ -26,25 +29,30 @@ class AuthenticationController extends Controller
 
         return redirect('/');
     }
-     public function index(Request $request){
+     public function register(RegisterRequest $request){
 
-          User::create([
+         User::create([
               'name'=> $request->name,
               'email'=>$request->email,
               'gender'=>$request->gender,
               'password'=>Hash::make($request->password),
               'phone'=>$request->phone]);
        return view('login');
+
 }
-   public function login(Request $request){
+   public function login(LoginRequest $request){
 //        dd('mm');
        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 //           dd('dina');
-           return redirect()->route('home');
+           return redirect()->intended('/home');
        } else {
-           Toastr::error('your credentials are wrong, please check them', 'Error');
-           return redirect()->back();
+//
+           return back()->withErrors([
+               'error' => 'Invalid email or password'
+           ]);
        }
 
    }
+
+
 }

@@ -24,21 +24,26 @@
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="email">Email address</label>
                             <input type="email" id="email" class="form-control form-control-lg" name="email"/>
+                            @error('error')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
 
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="pass">Password</label>
                             <input type="password" id="pass" class="form-control form-control-lg" name="password"/>
-
+                            @error('error')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="pt-1 mb-4">
                             <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg " style="color:black; background-color: #78e0e3;" type="submit">Login</button>
                         </div>
 
-{{--                        <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#">Forgot password?</a></p>--}}
-                        <p>Don't have an account? <a href="{{route('register_user')}}" class="link-info" style="color:#0b8f96;"> Register here</a></p>
+                        <p class="small mb-5 pb-lg-2" ><a href="{{route('forgot_password')}}" style="color:black;">Forgot password?</a></p>
+                        <p>Don't have an account? <a href="{{route('register_user')}}"  style="color:#0b8f96;"> Register here</a></p>
 
                     </form>
 

@@ -59,19 +59,22 @@ class CategoryController extends Controller
 ////       dd($category_image);
         return view('Admin.categories.update',compact('category_id','category_name','category_code'));
     }
-
+//'category_image'
    public function update(Request $request)
    {
-       $request->validate([
-           'fileToUpload' => 'image|mimes:jpg,jpeg,png,webp,gif|max:2048',
-       ]);
-
+//       $old_category_image= Category::query()->where('id',$request->id)->select('image')->first();
+//       $request->validate([
+//           'fileToUpload' => 'image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+//       ]);
+//             if($old_category_image->exists() && $request->image ){
+//                 unlink('assets/pictures/'.$old_category_image);
+//             }
        $category_data=$request->except('_token');
        $file = $request->file('fileToUpload');
        $originalName = $file->getClientOriginalName();
        $safeName=htmlspecialchars(basename($originalName));
        $filePath = $file->move('assets/pictures',$safeName);
-       $category_data->image = $safeName;
+       $category_data['image'] = $safeName;
        $this->categoryService->updateCategory($category_data['id'],$category_data);
        return redirect()->route('ListCategories');
    }

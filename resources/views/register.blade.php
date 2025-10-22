@@ -19,11 +19,17 @@
                                     @csrf
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="name">Name</label>
-                                        <input type="text" id="name" class="form-control form-control-lg" required name="name"/>
+                                        <input type="text" id="name" class="form-control form-control-lg" required name="name" value="{{old('name')}}"/>
+                                        @error('name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="email">Email Address</label>
-                                        <input type="text" id="email" class="form-control form-control-lg" required name="email"/>
+                                        <input type="text" id="email" class="form-control form-control-lg" required name="email" value="{{old('email')}}"/>
+                                        @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
@@ -41,15 +47,24 @@
                                                    value="1" />
                                             <label class="form-check-label" for="maleGender">Male</label>
                                         </div>
+                                        @error('gender')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="pass">Password</label>
-                                        <input type="password" id="pass" class="form-control form-control-lg" name="password" />
+                                        <input type="password" id="pass" class="form-control form-control-lg" required name="password" />
+                                        @error('password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
 
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="phone">Phone</label>
-                                        <input type="text" id="phone" class="form-control form-control-lg" required name="phone"/>
+                                        <input type="text" id="phone" class="form-control form-control-lg" required name="phone" value="{{old('phone')}}"/>
+                                        @error('phone')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     <div class="d-flex justify-content-end pt-3">
                                         <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn  btn-lg ms-2" style="background-color: #0b8f96; color: white">Submit</button>
@@ -65,7 +80,5 @@
         </div>
     </div>
 </section>
-
-@include('includes.script')
 </body>
 </html>
