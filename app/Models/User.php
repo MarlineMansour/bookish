@@ -26,9 +26,12 @@ class User extends Authenticatable
 
     ];
     public function UserOrders(){
-        return  $this->hasMany(Order::class,'user_id');
+        return  $this->hasMany(Order::class);
     }
 
+    public function PasswordVerificationCode(){
+        return $this->hasMany(VerificationCode::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

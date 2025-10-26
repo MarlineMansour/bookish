@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\OrderController;
@@ -32,8 +33,10 @@ Route::middleware('guest')->group(function(){
     Route::get('/Show_Login',[AuthenticationController::class,'ShowLogin'])->name('login');
     Route::post('/register-store',[AuthenticationController::class,'register'])->name('register_store');
     Route::post('/login_User',[AuthenticationController::class,'login'])->name('login_User');
-    Route::get('/forgot_password',[UserController::class,'ForgotPassword'])->name('forgot_password');
-    Route::post('/verification_code',[UserController::class,'Generatecode'])->name('verification_code');
+    Route::get('/forgot_password',[ForgotPasswordController::class,'ForgotPassword'])->name('forgot_password');
+    Route::match(['get', 'post'],'/verification_code',[ForgotPasswordController::class,'SendVerificationCode'])->name('verification_code');
+    Route::match(['get', 'post'],'/verify_code_sent',[ForgotPasswordController::class,'verify'])->name('verify_code');
+    Route::match(['get', 'post'],'/reset_password',[ForgotPasswordController::class,'ResetPassword'])->name('reset_password');
 });
 
 //Route::get('/checkout',[CheckoutController::class,'ShowPurchasedProduct'])->name('checkout')->middleware('auth');
